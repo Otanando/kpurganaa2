@@ -1,0 +1,413 @@
+﻿@{
+    // Establece el título de la vista y el diseño general
+    ViewBag.Title = "Habitaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    // Este bloque se repite innecesariamente, posiblemente un error de copia
+    ViewBag.Title = "TipoHabitacion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    // Este bloque también se repite, debe ser eliminado
+    ViewBag.Title = "Usuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+// Breadcrumb para la navegación
+<ol class="breadcrumb mb-4 mt-4">
+    <li class="breadcrumb-item"><a href="index.html">Mantenimiento</a></li>
+    <li class="breadcrumb-item active">Habitacion</li>
+</ol>
+
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-users me-1"></i> Lista de Habitaciones
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <button type="button" class="btn btn-success" onclick="abrirModal(null)">Crear Nueva Habitacion</button>
+            </div>
+        </div>
+        <hr />
+
+        <!-- Tabla para mostrar la lista de habitaciones -->
+        <table id="tabla" class="display cell-border" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Tipo Habitacion</th>
+                    <th>Precio</th>     
+                    <th>Stock</th>
+                    <th>Activo</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Aquí se llenará con los datos -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal para crear o editar habitaciones -->
+<div class="modal fade" id="FormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="exampleModalLabel">Tipo de Habitaciones</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input id="txtid" type="hidden" class="form-control" hidden />
+
+                <form id="contenedor" class="row">
+                    <div class="col-sm-3">
+                        <div class="mb-2">
+                            <img id="img_Habitacion" height="197" width="200" class="border rounded mx-auto d-block img-fluid" />
+                        </div>
+                        <div class="mb-2">
+                            <input class="form-control" type="file" id="fileHabitacion" accept="image/png, image/jpg, image/jpeg" onchange="mostarImagen(this)" />
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="txtnombre" name="nombre" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Descripcion</label>
+                            <textarea class="form-control" id="txtdescripcion" name="descripcion" style="height: 125px; resize:none"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="mb-3">
+                            <label class="form-label">Tipo de Habitacion</label>
+                            <select id="cbotipohabitacion" class="form-select"></select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Precio</label>
+                            <input type="text" class="form-control" id="txtprecio" name="precio" autocomplete="off" />
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="mb-3">
+                            <label class="form-label">Stock</label>
+                            <input type="number" class="form-control" id="txtStock" name="stock" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Activo</label>
+                            <select id="cboactivo" class="form-select">
+                                <option value="1">Si</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <div id="mensajeError" class="alert alert-danger" role="alert" style="display:none;">
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="Guardar()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        var tabladata;
+        var filaSeleccionada;
+
+        // Función para mostrar la imagen seleccionada
+        function mostarImagen(input) {
+            if (input.files) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#img_Habitacion").attr("src", e.target.result).width(200).height(197);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // Inicialización de la tabla de datos
+        tabladata = $('#tabla').DataTable({
+            responsive: true,
+            ordering: false,
+            "ajax": {
+                url: '@Url.Action("ListarHabitacion", "Mantenedor")',
+                type: "GET",
+                dataType: "json",
+            },
+            "columns": [
+                { "data": 'Nombre' },
+                { "data": 'Descripcion' },
+
+                {
+                    "data": 'oTipoHabitacion', 'render': function (data) {
+                        return data.Descripcion
+                    }
+                },
+
+                { "data": 'Precio' },
+                { "data": 'Stock' },
+
+
+                {
+                    "data": 'Activo', 'render': function (valor) {
+                        if (valor) {
+
+                            return '<span   class= "badge bg-success">Si</ span>'
+                        } else {
+
+                            return '<span   class= "badge bg-danger">No</ span>'
+                        }
+                    }  
+                 },
+                {
+                    "defaultContent": '<button type="button" class="btn btn-primary btn-sm btn-editar"><i class="fas fa-pen me-1"></i></button>' +
+                                      '<button type="button" class="btn btn-danger btn-sm ms-2 btn-eliminar"><i class="fas fa-trash me-1"></i></button>',
+                    "orderable": false,
+                    "searchable": false,
+                    "width": "90px"
+                }
+            ],
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/Spanish.json"
+            }
+        });
+
+        // Carga de tipos de habitación para el select
+        jQuery.ajax({
+            url: '@Url.Action("ListarTipoHabitacion", "Mantenedor")',
+            type: "GET",
+            data: null,
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                $("<option>").attr({ "value": "0", "disabled": "true" }).text("Seleccionar").appendTo("#cbotipohabitacion");
+                $.each(data.data, function (index, item) {
+                    $("<option>").attr({ "value": item.IdTipoHabitacion }).text(item.Descripcion).appendTo("#cbotipohabitacion");
+                });
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+
+
+
+
+        jQuery.validator.addMethod("preciodecimal", function (value, element) {
+
+            return this.optional(element) || /^\d{0,4}(\.\d{0,2})?$/i.test(value);
+        }, "el formato correcto del precio es ##.##");
+
+
+
+        $("#contenedor").validate({
+            rules: {
+                nombre: {
+
+                    required: true
+
+                },
+                descripcion: {
+
+                    required: true
+
+                },
+                precio: {
+
+                    required: true,
+                    preciodecimal: true
+
+                },
+                stock: {
+
+                    required: true,
+                    number: true
+                }
+            },
+
+
+
+            messages: {
+
+                nombre: "_ El campo Nombre obligatorio",
+                descripcion: "_ El campo Descripcion obligatorio",
+                precio: { required: "_ El campo Precio obligatorio", preciodecimal: "el formato correcto del precio es ##.##" },
+                stock: { required: "_ El campo Stock obligatorio", preciodecimal: "_ Debe ingresar solo numero en el stock" }
+            },
+            errorElement: "div",
+            errorLabelContainer: ".alert-danger"
+
+        })
+         
+
+
+
+        // Función para abrir el modal y cargar datos si es necesario
+        function abrirModal(json) {
+            $("#txtid").val(0);
+            $("#img_Habitacion").removeAttr("src");
+            $("#fileHabitacion").val("");
+            $("#txtnombre").val("");
+            $("#txtdescripcion").val("");
+            $("#cbotipohabitacion").val($("#cbotipohabitacion option:first").val());
+            $("#txtprecio").val("");
+            $("#txtStock").val("");
+            $("#cboactivo").val(1);
+            $("#mensajeError").hide();
+
+            if (json != null) {
+                $("#txtid").val(json.IdHabitacion);
+                $("#txtdescripcion").val(json.Descripcion);
+                $("#txtnombre").val(json.Nombre);
+                $("#cbotipohabitacion").val(json.oTipoHabitacion.IdTipoHabitacion);
+                $("#txtprecio").val(json.Precio);
+                $("#txtStock").val(json.Stock);
+                $("#cboactivo").val(json.Activo ? 1 : 0);
+
+
+            }
+
+            $("#FormModal").modal("show");
+        }
+
+        // Evento para editar una habitación
+        $("#tabla tbody").on("click", ".btn-editar", function () {
+            filaSeleccionada = $(this).closest("tr");
+            var data = tabladata.row(filaSeleccionada).data();
+            abrirModal(data);
+        });
+
+        // Evento para eliminar una habitación
+
+
+
+        $("#tabla tbody").on("click", ".btn-eliminar", function () {
+            var habitacionseleccionado = $(this).closest("tr");
+            var data = tabladata.row(habitacionseleccionado).data();
+
+            swal({
+                title: "Esta Seguro",
+                text: "¿Desea eliminar la  Habitacion?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-primary",
+                confirmButtonText: "Si",
+                cancelButtonText: "No",
+                closeOnConfirm: true
+            }, function () {
+                jQuery.ajax({
+                    url: '@Url.Action("EliminarHabitacion", "Mantenedor")',
+                    type: "POST",
+                    data: JSON.stringify({ id: data.IdHabitacion }),
+                    dataType: "Json",
+                    contentType: "application/json",
+                    success: function (data) {
+                        if (data.resultado) {
+                            tabladata.row(habitacionseleccionado).remove().draw();
+                        } else {
+                            swal("No se pudo eliminar", data.mensaje, "error");
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+
+        // Función para guardar una habitación
+        function Guardar() {
+
+            if (!$("#contenedor").valid()) {
+
+                return;
+            }
+
+
+
+            var ImagenSleccionada = $("#fileHabitacion")[0].files[0];
+
+            var Habitacion = {
+                IdHabitacion: $("#txtid").val(),
+                Nombre: $("#txtnombre").val(),
+                Descripcion: $("#txtdescripcion").val(),
+                oTipoHabitacion: {
+                    IdTipoHabitacion: $("#cbotipohabitacion option:selected").val(),
+                    Descripcion: $("#cbotipohabitacion option:selected").text()
+                },
+                PrecioTexto: $("#txtprecio").val(),
+                Precio: $("#txtprecio").val(),
+                Stock: $("#txtStock").val(),
+                Activo: $("#cboactivo").val() == 1 ? true : false
+            };
+
+            console.log("Habitacion ", Habitacion);
+
+            var request = new FormData();
+            request.append("objeto", JSON.stringify(Habitacion));
+            request.append("archivoImagen", ImagenSleccionada);
+
+            jQuery.ajax({
+                url: '@Url.Action("GuardarHabitacion", "Mantenedor")',
+                type: "POST",
+                data: request,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    $(".modal-body").LoadingOverlay("hide");
+
+                    if (Habitacion.IdHabitacion == 0) {
+                        if (data.idGenerado != 0) {
+                            Habitacion.IdHabitacion = data.idGenerado;
+                            tabladata.row.add(Habitacion).draw(false);
+                            $("#FormModal").modal("hide");
+                        } else {
+                            $("#mensajeError").text(data.mensaje);
+                            $("#mensajeError").show();
+                        }
+                    } else {
+                        if (data.operacionExitosa) {
+                            tabladata.row(filaSeleccionada).data(Habitacion).draw(false);
+                            filaSeleccionada = null;
+                            $("#FormModal").modal("hide");
+                        } else {
+                            $("#mensajeError").text(data.mensaje);
+                            $("#mensajeError").show();
+                        }
+                    }
+                },
+                error: function (error) {
+                    $(".modal-body").LoadingOverlay("hide");
+                    $("#mensajeError").text("Error Ajax");
+                    $("#mensajeError").show();
+                },
+                beforeSend: function () {
+                    $(".modal-body").LoadingOverlay("show", {
+                        imageResizeFactor: 2,
+                        text: "Cargando...",
+                        size: 14
+                    });
+                }
+            });
+        }
+    </script>
+}

@@ -1,0 +1,109 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ferna\\Documents\\kpurganaa2\\kpurganaa\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C492465A-198F-4CB1-8AFA-0B39E7A4F022}|kpurganaaAdmin\\kpurganaaAdmin.csproj|c:\\users\\ferna\\documents\\kpurganaa2\\kpurganaa\\kpurganaaadmin\\controllers\\accesocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C492465A-198F-4CB1-8AFA-0B39E7A4F022}|kpurganaaAdmin\\kpurganaaAdmin.csproj|solutionrelative:kpurganaaadmin\\controllers\\accesocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C492465A-198F-4CB1-8AFA-0B39E7A4F022}|kpurganaaAdmin\\kpurganaaAdmin.csproj|c:\\users\\ferna\\documents\\kpurganaa2\\kpurganaa\\kpurganaaadmin\\views\\acceso\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C492465A-198F-4CB1-8AFA-0B39E7A4F022}|kpurganaaAdmin\\kpurganaaAdmin.csproj|solutionrelative:kpurganaaadmin\\views\\acceso\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6AB065B9-A9F7-4E24-B40B-FA97264E78A9}|CapaNegocio\\CapaNegocio.csproj|c:\\users\\ferna\\documents\\kpurganaa2\\kpurganaa\\capanegocio\\cn_usuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6AB065B9-A9F7-4E24-B40B-FA97264E78A9}|CapaNegocio\\CapaNegocio.csproj|solutionrelative:capanegocio\\cn_usuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C492465A-198F-4CB1-8AFA-0B39E7A4F022}|kpurganaaAdmin\\kpurganaaAdmin.csproj|c:\\users\\ferna\\documents\\kpurganaa2\\kpurganaa\\kpurganaaadmin\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C492465A-198F-4CB1-8AFA-0B39E7A4F022}|kpurganaaAdmin\\kpurganaaAdmin.csproj|solutionrelative:kpurganaaadmin\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE7F1D63-F3B3-44DD-BB5B-A13443F306A7}|CapaDatos\\CapaDatos.csproj|c:\\users\\ferna\\documents\\kpurganaa2\\kpurganaa\\capadatos\\cd_usuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE7F1D63-F3B3-44DD-BB5B-A13443F306A7}|CapaDatos\\CapaDatos.csproj|solutionrelative:capadatos\\cd_usuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\ferna\\Documents\\kpurganaa2\\kpurganaa\\kpurganaaAdmin\\Views\\Acceso\\Index.cshtml",
+              "RelativeDocumentMoniker": "kpurganaaAdmin\\Views\\Acceso\\Index.cshtml",
+              "ToolTip": "C:\\Users\\ferna\\Documents\\kpurganaa2\\kpurganaa\\kpurganaaAdmin\\Views\\Acceso\\Index.cshtml",
+              "RelativeToolTip": "kpurganaaAdmin\\Views\\Acceso\\Index.cshtml",
+              "ViewState": "AQIAABAAAAAAAAAAAAAcwEUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-27T20:51:33.18Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccesoController.cs",
+              "DocumentMoniker": "C:\\Users\\ferna\\Documents\\kpurganaa2\\kpurganaa\\kpurganaaAdmin\\Controllers\\AccesoController.cs",
+              "RelativeDocumentMoniker": "kpurganaaAdmin\\Controllers\\AccesoController.cs",
+              "ToolTip": "C:\\Users\\ferna\\Documents\\kpurganaa2\\kpurganaa\\kpurganaaAdmin\\Controllers\\AccesoController.cs",
+              "RelativeToolTip": "kpurganaaAdmin\\Controllers\\AccesoController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-27T20:50:33.894Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CN_Usuarios.cs",
+              "DocumentMoniker": "C:\\Users\\ferna\\Documents\\kpurganaa2\\kpurganaa\\CapaNegocio\\CN_Usuarios.cs",
+              "RelativeDocumentMoniker": "CapaNegocio\\CN_Usuarios.cs",
+              "ToolTip": "C:\\Users\\ferna\\Documents\\kpurganaa2\\kpurganaa\\CapaNegocio\\CN_Usuarios.cs",
+              "RelativeToolTip": "CapaNegocio\\CN_Usuarios.cs",
+              "ViewState": "AQIAANsAAAAAAAAAAAAAwO8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-27T20:27:59.986Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CD_Usuarios.cs",
+              "DocumentMoniker": "C:\\Users\\ferna\\Documents\\kpurganaa2\\kpurganaa\\CapaDatos\\CD_Usuarios.cs",
+              "RelativeDocumentMoniker": "CapaDatos\\CD_Usuarios.cs",
+              "ToolTip": "C:\\Users\\ferna\\Documents\\kpurganaa2\\kpurganaa\\CapaDatos\\CD_Usuarios.cs",
+              "RelativeToolTip": "CapaDatos\\CD_Usuarios.cs",
+              "ViewState": "AQIAALkAAAAAAAAAAAAAAMQAAABXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-27T20:19:26.121Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\ferna\\Documents\\kpurganaa2\\kpurganaa\\kpurganaaAdmin\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "kpurganaaAdmin\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\ferna\\Documents\\kpurganaa2\\kpurganaa\\kpurganaaAdmin\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "kpurganaaAdmin\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAADoAAAAAAAAAAAAuwEgAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-27T18:42:53.802Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

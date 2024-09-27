@@ -1,0 +1,70 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CapaEntidad;
+using System.Data;
+using System.Security.Claims;
+using System.Data.SqlClient;
+
+
+namespace CapaDatos
+{
+    public class CD_Reporte
+    {
+
+        public DashBoard verDashboard()
+        {
+
+            DashBoard objeto = new DashBoard();
+
+
+            try
+            {
+                using (SqlConnection oconexion = new SqlConnection(Conexion.cn))
+
+
+                {
+       
+                    SqlCommand cmd = new SqlCommand("sp_ReporteDashboard", oconexion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    oconexion.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+
+                            objeto = new DashBoard()
+                            {
+
+                                TotalCliente = Convert.ToInt32(dr["TotalCliente"]),
+                                TotalVenta = Convert.ToInt32(dr["TotalVenta"]),
+                                TotalHabitacion = Convert.ToInt32(dr["TotalHabitacion"]),
+
+                            };
+
+
+                            
+                        }
+                    }
+                    
+                }
+            }
+
+            catch
+            {
+
+                objeto = new DashBoard();
+
+            };
+
+            return objeto;
+
+
+        }
+
+
+    }
+}
